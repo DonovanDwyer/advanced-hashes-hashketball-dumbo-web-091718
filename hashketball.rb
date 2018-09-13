@@ -158,13 +158,21 @@ end
 
 def player_numbers(team)
   arr = []
-  game_hash.each do |t, team_stat|
-    if team_stat[:team_name].to_s == team
-      team_stat[:players].each do |name, stat_hash|
-        arr << stat_hash[:number]
-      end
-    end
+  team_hash = game_hash.find do |t, team_stat|
+    team == team_stat[:team_name]
+  end  
+  binding.pry
+  stats = team_hash[1]
+  stats[:players].each do |name, stat_hash|
+    arr << stat_hash[:number]
   end
+  #game_hash.each do |t, team_stat|
+   # if team_stat[:team_name].to_s == team
+    #  team_stat[:players].each do |name, stat_hash|
+     #   arr << stat_hash[:number]
+    #  end
+  #  end
+  #end
   arr
 end
 
